@@ -1,0 +1,19 @@
+{
+  "name": "katabump-nodejs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "KataBump Node.js TLS and WebSocket gateway without server auto-renewal",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "init": "node init-config.js",
+    "cert": "node issue-cert.js",
+    "check": "node --check index.js && node --check issue-cert.js && node --check init-config.js"
+  },
+  "dependencies": {
+    "acme-client": "^5.4.0",
+    "ws": "^8.22.1"
+  }
+}

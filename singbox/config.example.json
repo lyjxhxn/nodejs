@@ -1,0 +1,72 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "vmess",
+      "tag": "vmess-in",
+      "listen": "127.0.0.1",
+      "listen_port": 10001,
+      "users": [
+        {
+          "name": "node-user",
+          "uuid": "GENERATE_WITH_NPM_RUN_INIT",
+          "alterId": 0
+        }
+      ],
+      "transport": {
+        "type": "ws",
+        "path": "/sb"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "trojan-ws-in",
+      "listen": "127.0.0.1",
+      "listen_port": 10002,
+      "users": [
+        {
+          "name": "node-user",
+          "password": "GENERATE_WITH_NPM_RUN_INIT"
+        }
+      ],
+      "transport": {
+        "type": "ws",
+        "path": "/trojan"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "vless-ws-in",
+      "listen": "127.0.0.1",
+      "listen_port": 10003,
+      "users": [
+        {
+          "name": "node-user",
+          "uuid": "GENERATE_WITH_NPM_RUN_INIT"
+        }
+      ],
+      "transport": {
+        "type": "ws",
+        "path": "/vless"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "ip_is_private": true,
+        "action": "reject"
+      }
+    ],
+    "final": "direct"
+  }
+}
